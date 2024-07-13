@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/auth/login/presentation/views/login_screen.dart';
 import 'package:live_tv/presentation/auth/otp_verify/presentation/views/opt_verify_screen.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryAppBlueColor),
         useMaterial3: true,
       ),
-      home: const SubscriptionScreen(),
+      home: const Homepage(),
     );
   }
 }

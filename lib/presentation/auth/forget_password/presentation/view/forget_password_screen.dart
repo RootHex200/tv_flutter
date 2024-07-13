@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/auth/forget_password/presentation/controller/forget_password_binding.dart';
 import 'package:live_tv/presentation/auth/forget_password/presentation/controller/forget_password_controller.dart';
+import 'package:live_tv/presentation/auth/otp_verify/presentation/views/opt_verify_screen.dart';
 import 'package:live_tv/presentation/auth/reset_password/presentation/views/reset_password_screen.dart';
 import 'package:live_tv/utils/common/widgets/back_button/back_button.dart';
 import 'package:live_tv/utils/common/widgets/button/custom_buttom.dart';
@@ -42,7 +43,7 @@ return Scaffold(
                 const VerticalSpace(height: 20.0),
                 
                CustomButton(txt: 'Continue',ontap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ResetPasswordScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const OtpverifyScreen()));
                },),
                const VerticalSpace(height: 40.0),
                 

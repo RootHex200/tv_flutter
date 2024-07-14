@@ -16,7 +16,7 @@ class OtpverifyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.whiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20,right: 20),
@@ -44,10 +44,10 @@ class OtpverifyScreen extends StatelessWidget {
                 textStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),
                 fillColor: AppColors.primaryWhiteColor,
                 numberOfFields: 4,
-                enabledBorderColor: AppColors.primaryAppBlueColor,
-                focusedBorderColor: AppColors.primaryAppBlueColor,
-                disabledBorderColor: AppColors.primaryAppBlueColor,
-                borderColor: AppColors.primaryAppBlueColor,
+                enabledBorderColor: AppColors.primaryAppRedColor,
+                focusedBorderColor: AppColors.primaryAppRedColor,
+                disabledBorderColor: AppColors.primaryAppRedColor,
+                borderColor: AppColors.primaryAppRedColor,
                 //set to true to show as box or false to show as dash
                 showFieldAsBox: true,
                 

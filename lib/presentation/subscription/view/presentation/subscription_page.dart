@@ -18,7 +18,7 @@ class SubscriptionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SubscriptionController subscriptionController=Get.put(SubscriptionController());
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.whiteColor,
       appBar:  AppBar(
           title: const Text(
             "Subscription",
@@ -28,7 +28,7 @@ class SubscriptionScreen extends StatelessWidget {
                 color: AppColors.primaryWhiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppBlueColor,
+          backgroundColor: AppColors.primaryAppRedColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
@@ -79,9 +79,9 @@ class SubscriptionScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 20,right: 20,bottom: 20),
                       padding: const EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
                       decoration: BoxDecoration(
-                        color:subscriptionController.buttonSelect.value==index?AppColors.primaryAppBlueColor: Colors.black54,
+                        color:subscriptionController.buttonSelect.value==index?AppColors.primaryAppRedColor: AppColors.whiteColor,
                         border: Border.all(
-                          color: AppColors.primaryAppBlueColor,
+                          color: AppColors.primaryAppRedColor,
                           width: 3
                         ),
                         borderRadius: BorderRadius.circular(15)
@@ -90,9 +90,11 @@ class SubscriptionScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         
                         children: [
-                          Text(subscriptionController.subscription[index].name!,style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor:AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 19),),
+                          Text("${subscriptionController.subscription[index].name!} package",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor:AppColors.primaryAppRedColor,fontWeight: FontWeight.bold,fontSize: 19),),
                           const VerticalSpace(height: 5),
-                           Text("${subscriptionController.subscription[index].duration.toString() }/${subscriptionController.subscription[index].type}",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor: AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 19),),
+                          Text("Max Device ${subscriptionController.subscription[index].maxUser!}",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor:AppColors.primaryAppRedColor,fontWeight: FontWeight.bold,fontSize: 19)),
+                          const VerticalSpace(height: 5),
+                           Text("${subscriptionController.subscription[index].duration.toString() }/${subscriptionController.subscription[index].type}-Price ${subscriptionController.subscription[index].amount}",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor: AppColors.primaryAppRedColor,fontWeight: FontWeight.bold,fontSize: 19),),
                         ],
                       )
                     ),
@@ -116,7 +118,7 @@ class SubscriptionScreen extends StatelessWidget {
      
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryAppBlueColor,
+                backgroundColor: AppColors.primaryAppRedColor,
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 textStyle: const TextStyle(fontSize: 18),
               ),

@@ -1,3 +1,5 @@
+
+
 // ad_helper.dart
 import 'dart:io';
 
@@ -24,7 +26,7 @@ class AdHelper {
 
   static String get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-7366330184905246/6639918512'; // Test rewarded ad unit ID for Android
+      return 'ca-app-pub-3940256099942544/5224354917'; // Test rewarded ad unit ID for Android
     } else if (Platform.isIOS) {
       return 'ca-app-pub-3940256099942544/1712485313'; // Test rewarded ad unit ID for iOS
     } else {
@@ -33,10 +35,3 @@ class AdHelper {
   }
 
 }
-
-// Admob: 
-
-// App ID: ca-app-pub-7366330184905246~2509580749
-// Banner ID: ca-app-pub-7366330184905246/7957504077
-// Interstitial ID: ca-app-pub-7366330184905246/8448458660
-// Reward ID: ca-app-pub-7366330184905246/6639918512

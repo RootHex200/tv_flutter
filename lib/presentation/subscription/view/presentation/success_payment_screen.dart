@@ -18,7 +18,7 @@ Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>cons
         return Future.value(true);
       },
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.whiteColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

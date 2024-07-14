@@ -4,7 +4,6 @@ import 'package:live_tv/presentation/auth/login/presentation/views/login_screen.
 import 'package:live_tv/presentation/home/presentation/controller/category_controller.dart';
 import 'package:live_tv/presentation/home/presentation/view/components/tab_view_data.dart';
 import 'package:live_tv/presentation/profile/presentation/view/profile.dart';
-import 'package:live_tv/utils/ads/add_controller.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/constrant/value.dart';
@@ -16,22 +15,16 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
-    final addController=Get.put(AdsController());
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          leading: SizedBox(
-            child: Image.asset("assets/images/app_logo.png"),
-          ),
-          title: const Text(
-            "BioScope Box",
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primaryAppBlueColor),
-          ),
+          backgroundColor: AppColors.whiteColor,
+          title: Image.asset(
+            
+            "assets/images/logo.png",
+            height: 70,
+            width: 200,),
           centerTitle: true,
           actions: [
             GestureDetector(
@@ -53,7 +46,7 @@ class Homepage extends StatelessWidget {
                   padding: EdgeInsets.only(right: 20),
                   child: const Icon(
                     Icons.person,
-                    color: AppColors.primaryAppBlueColor,
+                    color: AppColors.primaryAppRedColor,
                   ),
                 ))
           ],
@@ -76,7 +69,7 @@ class Homepage extends StatelessWidget {
         //       child: const Icon(Icons.person,color: AppColors.primaryAppBlueColor,))
         //           ],
         //           title: const Text("BioscopeBox",style: TextStyle(color: AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 20),),
-        //   backgroundColor: Colors.black,
+        //   backgroundColor: AppColors.balckColor,
         //   bottom:  TabBar(
       
         //     onTap: (value){
@@ -133,7 +126,7 @@ class Homepage extends StatelessWidget {
                       tabAlignment: TabAlignment.start,
                       dividerColor: Colors.transparent,
                       controller: categoryController.tabController,
-                      indicatorColor: AppColors.primaryAppBlueColor,
+                      indicatorColor: AppColors.primaryAppRedColor,
                       tabs: List.generate(
                           categoryController.tabData.length,
                           (index) => Tab(
@@ -144,8 +137,8 @@ class Homepage extends StatelessWidget {
                                     color: categoryController
                                                 .selectTabTextColor.value ==
                                             index
-                                        ? AppColors.textbluecolor
-                                        : AppColors.primaryWhiteColor),
+                                        ? AppColors.primaryAppRedColor
+                                        : AppColors.balckColor),
                               )))),
             ),
             const VerticalSpace(height: 20),

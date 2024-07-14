@@ -14,12 +14,12 @@ class CustomBackButton extends StatelessWidget {
           children: [
             Icon(
               Icons.arrow_back_ios,
-              color: AppColors.primaryAppBlueColor,
+              color: AppColors.primaryAppRedColor,
             ),
             Text(
               "Back",
               style: TextStyle(
-                  color: AppColors.primaryAppBlueColor,
+                  color: AppColors.primaryAppRedColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
             )

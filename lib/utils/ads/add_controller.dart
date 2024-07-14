@@ -8,14 +8,14 @@ import 'package:live_tv/utils/ads/ads_helper.dart';
 
 class AdsController extends GetxController{
 
-  late BannerAd _bannerAd;
+  late BannerAd bannerAd;
   var isBannerAdReady = false.obs;
 
   InterstitialAd? _interstitialAd;
 
   @override
   void dispose() {
-    _bannerAd.dispose();
+    bannerAd.dispose();
     _interstitialAd!.dispose();
     super.dispose();
   }
@@ -71,7 +71,7 @@ void showInterstitialAd() {
 }
 
 void loadBannerAd() {
-  _bannerAd = BannerAd(
+  bannerAd = BannerAd(
     adUnitId: AdHelper.bannerAdUnitId,
     request: const AdRequest(),
     size: AdSize.banner,
@@ -86,7 +86,7 @@ void loadBannerAd() {
     ),
   );
 
-  _bannerAd.load();
+  bannerAd.load();
 }
 
 RewardedAd? _rewardedAd;

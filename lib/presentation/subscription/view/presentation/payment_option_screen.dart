@@ -32,7 +32,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 color: AppColors.primaryWhiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppBlueColor,
+          backgroundColor: AppColors.primaryAppRedColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(

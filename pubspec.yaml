@@ -45,6 +45,8 @@ dependencies:
   icons_launcher: ^2.1.7 
   google_mobile_ads: ^2.4.0
   image_picker: ^1.0.8
+  url_launcher: ^6.3.0
+  share_plus: ^6.3.4
   # flutter_native_splash: ^2.3.10
 
 dev_dependencies:

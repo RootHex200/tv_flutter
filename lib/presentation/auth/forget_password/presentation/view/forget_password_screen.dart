@@ -21,7 +21,7 @@ class ForgetPasswordScreen extends StatelessWidget {
     ForgetBinding().dependencies();
     final forgetController=Get.find<ForgetPasswordController>();
 return Scaffold(
-    backgroundColor: Colors.black,
+    backgroundColor: AppColors.whiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20,right: 20),

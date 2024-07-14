@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
 import 'package:live_tv/presentation/profile/presentation/controller/profile_controller.dart';
 import 'package:live_tv/presentation/profile/presentation/view/linked_device.dart';
+import 'package:live_tv/presentation/profile/presentation/view/privay.dart';
 import 'package:live_tv/presentation/subscription/view/presentation/subscription_page.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/constrant/value.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -19,14 +22,14 @@ class ProfilePage extends StatelessWidget {
     ProfileController profileController=Get.put(ProfileController());
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.balckColor,
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           title: const Text(
             "Profile",
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: AppColors.primaryWhiteColor),
+                color: AppColors.whiteColor),
           ),
           centerTitle: true,
           backgroundColor: AppColors.primaryAppRedColor,
@@ -39,7 +42,7 @@ class ProfilePage extends StatelessWidget {
               child: const Icon(
                 Icons.arrow_back_ios,
                 size: 24,
-                color: AppColors.primaryWhiteColor,
+                color: AppColors.whiteColor,
               ),
             ),
           ),
@@ -75,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                               },
                               child: const CircleAvatar(
                                 radius: 15,
-                                backgroundColor: Color(0xFF9610FF),
+                                backgroundColor: AppColors.balckColor,
                                 child: Icon(
                                   Icons.edit,
                                   size: 15,
@@ -94,7 +97,7 @@ class ProfilePage extends StatelessWidget {
                         profileController.user.value.name.toString(),
                         style: const TextStyle(
                           fontSize: 16.0,
-                          color: AppColors.primaryWhiteColor,
+                          color: AppColors.whiteColor,
                         ),
                       ),
                     ),
@@ -113,7 +116,7 @@ class ProfilePage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 16.0,
                              
-                              color: AppColors.primaryWhiteColor,
+                              color: AppColors.whiteColor,
                             ),
                           ),
                         ),
@@ -128,7 +131,7 @@ class ProfilePage extends StatelessWidget {
                        profileController.user.value.subscription==null?"Not Yet": "${profileController.user.value.subscription!.duration}/${profileController.user.value.subscription!.type}",
                         style: const TextStyle(
                           fontSize: 16.0,
-                          color: AppColors.primaryWhiteColor,
+                          color: AppColors.whiteColor,
                         ),
                       ),
                     ),
@@ -144,13 +147,53 @@ class ProfilePage extends StatelessWidget {
                           profileController.profile.value.linkedDevice??"No subscription",
                           style: TextStyle(
                             fontSize: 16.0,
-                            color: AppColors.primaryWhiteColor,
+                            color: AppColors.whiteColor,
                           ),
                         ),
                       ),
                     ),
+                                        const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: ()async {
+                   final Uri _url =
+                        Uri.parse('https://play.google.com/store/games');
+                    if (!await launchUrl(_url)) {
+                      throw Exception('Could not launch $_url');
+                    }
+                      },
+                      child: buildCustomContainer(
+                        text: "Rate",
+                        trailing:  Icon(Icons.star,color: Colors.white,size: 25,),
+                      ),
+                    ),
+                                        const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Share.share('check out my website https://example.com');
+                      },
+                      child: buildCustomContainer(
+                        text: "Share",
+                        trailing:  Icon(Icons.share,color: Colors.white,size: 25,)
+                      ),
+                    ),
+                                                            const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PolicyPage()));
+                      },
+                      child: buildCustomContainer(
+                        text: "Privacy & Policy",
+                        trailing:  Icon(Icons.policy,color: Colors.white,size: 25,)
+                      ),
+                    ),
                     const SizedBox(
-                      height: 100,
+                      height: 20,
                     ),
                     GestureDetector(
                         onTap: () async{
@@ -174,7 +217,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                     const SizedBox(
-                      height: 100,
+                      height: 20,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -186,14 +229,14 @@ class ProfilePage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
-                          color: AppColors.primaryAppRedColor,
+                          color: AppColors.balckColor,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Center(
                           child: Text(
                             "Subscription",
                             style: TextStyle(
-                                color: AppColors.primaryWhiteColor,
+                                color: AppColors.whiteColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 19),
                           ),
@@ -219,7 +262,7 @@ class ProfilePage extends StatelessWidget {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-          color: AppColors.balckColor54,
+          color: AppColors.primaryAppRedColor,
           borderRadius: BorderRadius.circular(9.0),
           boxShadow: [
             BoxShadow(
@@ -238,7 +281,7 @@ class ProfilePage extends StatelessWidget {
               text,
               style: const TextStyle(
                 fontSize: 16.0,
-                color: AppColors.primaryWhiteColor,
+                color: AppColors.whiteColor,
                 fontWeight: FontWeight.w600,
               ),
             ),

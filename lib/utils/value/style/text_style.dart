@@ -9,10 +9,10 @@ const pageHeaderTextStyle = TextStyle(
 );
 
 const termsConditionTextStyle = TextStyle(
-  color: AppColors.primaryAppBlueColor,
+  color: AppColors.primaryAppRedColor,
   decoration: TextDecoration.underline,
 );
 const haveAccountTextStyle=TextStyle(color: AppColors.textGrayColor,fontSize: 18);
-const redColorSignInTextStyle=TextStyle(color: AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 18);
+const redColorSignInTextStyle=TextStyle(color: AppColors.primaryAppRedColor,fontWeight: FontWeight.bold,fontSize: 18);
 
 const fontsize17WithGrayColorTextStyle=TextStyle(color: AppColors.textGrayColor,fontWeight: FontWeight.w500,fontSize: 17);

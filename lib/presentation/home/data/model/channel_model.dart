@@ -124,7 +124,7 @@ class Data {
     categoryId = json['category_id'];
     name = json['name'];
     url = json['url'];
-    hdUrl = json['hd_url'] ?? "";
+    hdUrl = json['hd_url']==null ||json["hd_url"].toString()=="null"? "":json['hd_url'].toString();
     image = json['image'];
     description = json['description'];
     createdAt = json['created_at'];

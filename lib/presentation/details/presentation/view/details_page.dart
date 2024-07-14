@@ -20,7 +20,6 @@ class _DetailsPageState extends State<DetailsPage> {
   late DetailsController detailsController;
   @override
   void initState() {
-    print("initState................................");
      detailsController = Get.put(DetailsController(
         url: "https://live-hls-audio-aja-fa.getaj.net/VOICE-AJA/index.m3u8"));
     detailsController.getReleatedChannel(widget.categoryId);
@@ -28,7 +27,6 @@ class _DetailsPageState extends State<DetailsPage> {
   }
   @override
   void dispose() {
-    print("hellow");
     detailsController.betterPlayerController.value.dispose();
     Get.delete<DetailsController>();
     super.dispose();
@@ -39,15 +37,12 @@ class _DetailsPageState extends State<DetailsPage> {
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+            //           leading: SizedBox(
+            //   child: Image.asset("assets/images/app_logo.png"),
+            // ),
           backgroundColor: Colors.black,
           centerTitle: true,
-          title: const Text(
-            "BioScope Box",
-            style: TextStyle(
-                color: AppColors.primaryAppBlueColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 22),
-          ),
+          title: Image(image: AssetImage("assets/images/app_logo.png")),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);

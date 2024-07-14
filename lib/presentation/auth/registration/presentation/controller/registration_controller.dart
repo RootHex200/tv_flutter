@@ -7,12 +7,14 @@ import 'package:live_tv/utils/value/constrant/value.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationController extends GetxController{
-
+  final regformKey = GlobalKey<FormState>();
   late TextEditingController fullNameController;
   late TextEditingController emailController;
   late TextEditingController userNameController;
   late TextEditingController phoneNumberController;
   late TextEditingController passwordController;
+
+  var showpassword=false.obs;
 
   @override
   void onInit() {

@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
             width: 80,
             decoration:  BoxDecoration(
               borderRadius: BorderRadius.circular(60),
-              image: const DecorationImage(image: AssetImage("assets/images/download.png"))
+              image: const DecorationImage(image: AssetImage("assets/images/app_logo.png"))
             ),
             ),
         ),

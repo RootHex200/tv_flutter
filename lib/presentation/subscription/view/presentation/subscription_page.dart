@@ -19,6 +19,30 @@ class SubscriptionScreen extends StatelessWidget {
     SubscriptionController subscriptionController=Get.put(SubscriptionController());
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar:  AppBar(
+          title: const Text(
+            "Subscription",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryWhiteColor),
+          ),
+          centerTitle: true,
+          backgroundColor: AppColors.primaryAppBlueColor,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 24),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios,
+                size: 24,
+                color: AppColors.primaryWhiteColor,
+              ),
+            ),
+          ),
+        ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -52,8 +76,8 @@ class SubscriptionScreen extends StatelessWidget {
                   },
                   child: Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(left: 20,right: 20,bottom: 10),
-                      padding: const EdgeInsets.only(left: 20,right: 20),
+                      margin: const EdgeInsets.only(left: 20,right: 20,bottom: 20),
+                      padding: const EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
                       decoration: BoxDecoration(
                         color:subscriptionController.buttonSelect.value==index?AppColors.primaryAppBlueColor: Colors.black54,
                         border: Border.all(
@@ -68,7 +92,7 @@ class SubscriptionScreen extends StatelessWidget {
                         children: [
                           Text(subscriptionController.subscription[index].name!,style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor:AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 19),),
                           const VerticalSpace(height: 5),
-                           Text("${subscriptionController.subscription[index].type}/${subscriptionController.subscription[index].duration.toString()}",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor: AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 19),),
+                           Text("${subscriptionController.subscription[index].duration.toString() }/${subscriptionController.subscription[index].type}",style: TextStyle(color:subscriptionController.buttonSelect.value==index?AppColors.primaryWhiteColor: AppColors.primaryAppBlueColor,fontWeight: FontWeight.bold,fontSize: 19),),
                         ],
                       )
                     ),

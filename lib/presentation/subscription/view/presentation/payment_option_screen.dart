@@ -23,15 +23,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        automaticallyImplyLeading: false, // Removes back button
-        elevation: 20,
-        title: const Text(
-          'Payment',
-          style: TextStyle(color: AppColors.primaryWhiteColor),
+      appBar:  AppBar(
+          title: const Text(
+            "Payment",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryWhiteColor),
+          ),
+          centerTitle: true,
+          backgroundColor: AppColors.primaryAppBlueColor,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 24),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios,
+                size: 24,
+                color: AppColors.primaryWhiteColor,
+              ),
+            ),
+          ),
         ),
-      ),
       body: Stack(
         children: [
           WebView(

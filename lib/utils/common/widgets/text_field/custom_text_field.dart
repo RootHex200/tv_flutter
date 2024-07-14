@@ -8,11 +8,15 @@ class CustomTextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final TextInputType? textInputType;
   final TextEditingController controller;
-  const CustomTextFieldWidget({super.key,this.textInputType,required this.controller,required this.iconData,required this.labelText,this.suffixIcon});
+  final String? Function(String?)? validator;
+  final bool obscure;
+  const CustomTextFieldWidget({super.key,this.obscure=false,this.textInputType,this.validator,required this.controller,required this.iconData,required this.labelText,this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
+      obscureText: obscure,
       controller: controller,
       keyboardType:textInputType,
       decoration: InputDecoration(
@@ -23,6 +27,7 @@ class CustomTextFieldWidget extends StatelessWidget {
         ),
         fillColor: AppColors.primaryWhiteColor,
         filled: true,
+        errorStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),
         suffixIcon: suffixIcon,
         
         enabledBorder: const OutlineInputBorder(

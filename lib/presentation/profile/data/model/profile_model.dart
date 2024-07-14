@@ -1,24 +1,31 @@
 class ProfileModel {
   User? user;
-  Loggedin? loggedin;
+  String? subscriptionName;
+  String? linkedDevice;
+  // Loggedin? loggedin;
 
-  ProfileModel({this.user, this.loggedin});
+  ProfileModel(
+      {this.user, this.subscriptionName, this.linkedDevice});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
-    loggedin = json['loggedin'] != null
-        ? Loggedin.fromJson(json['loggedin'])
-        : null;
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    subscriptionName = json['subscription_name'];
+    linkedDevice = json['linked_device'];
+    // loggedin = json['loggedin'] != null
+    //     ? new Loggedin.fromJson(json['loggedin'])
+    //     : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (user != null) {
-      data['user'] = user!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
     }
-    if (loggedin != null) {
-      data['loggedin'] = loggedin!.toJson();
-    }
+    data['subscription_name'] = this.subscriptionName;
+    data['linked_device'] = this.linkedDevice;
+    // if (this.loggedin != null) {
+    //   data['loggedin'] = this.loggedin!.toJson();
+    // }
     return data;
   }
 }
@@ -28,104 +35,144 @@ class User {
   String? name;
   String? email;
   String? image;
-  String? emailVerifiedAt;
   String? code;
   String? subscriptionId;
   String? isPremium;
   String? isSuspended;
-  String? lastSeen;
+
   String? createdAt;
   String? updatedAt;
+  Subscription? subscription;
 
   User(
       {this.id,
       this.name,
       this.email,
       this.image,
-      this.emailVerifiedAt,
       this.code,
       this.subscriptionId,
       this.isPremium,
       this.isSuspended,
-      this.lastSeen,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.subscription});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
     image = json['image'];
-    emailVerifiedAt = json['email_verified_at']??"";
-    code = json['code']==null?"":json["code"];
+    code = json['code'];
     subscriptionId = json['subscription_id'];
     isPremium = json['isPremium'];
     isSuspended = json['isSuspended'];
-    lastSeen = json['last_seen'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    subscription = json['subscription'] != null
+        ? new Subscription.fromJson(json['subscription'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['email'] = email;
-    data['image'] = image;
-    data['email_verified_at'] = emailVerifiedAt;
-    data['code'] = code;
-    data['subscription_id'] = subscriptionId;
-    data['isPremium'] = isPremium;
-    data['isSuspended'] = isSuspended;
-    data['last_seen'] = lastSeen;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['image'] = this.image;
+    data['code'] = this.code;
+    data['subscription_id'] = this.subscriptionId;
+    data['isPremium'] = this.isPremium;
+    data['isSuspended'] = this.isSuspended;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    if (this.subscription != null) {
+      data['subscription'] = this.subscription!.toJson();
+    }
     return data;
   }
 }
 
-class Loggedin {
+class Subscription {
   int? id;
-  String? userId;
-  String? ip;
-  // void device;
-  String? lastIn;
+  String? name;
+  String? amount;
+  String? maxUser;
+  String? type;
+  String? duration;
   String? createdAt;
   String? updatedAt;
-  // void subscription;
 
-  Loggedin(
+  Subscription(
       {this.id,
-      this.userId,
-      this.ip,
-      // this.device,
-      this.lastIn,
+      this.name,
+      this.amount,
+      this.maxUser,
+      this.type,
+      this.duration,
       this.createdAt,
-      // this.updatedAt,
-      // this.subscription
-      });
+      this.updatedAt});
 
-  Loggedin.fromJson(Map<String, dynamic> json) {
+  Subscription.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['user_id'];
-    ip = json['ip'];
-    // device = json['device'];
-    lastIn = json['last_in'];
+    name = json['name'];
+    amount = json['amount'];
+    maxUser = json['max_user'];
+    type = json['type'];
+    duration = json['duration'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    // subscription = json['subscription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['user_id'] = userId;
-    data['ip'] = ip;
-    // data['device'] = device;
-    data['last_in'] = lastIn;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    // data['subscription'] = subscription;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['amount'] = this.amount;
+    data['max_user'] = this.maxUser;
+    data['type'] = this.type;
+    data['duration'] = this.duration;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }
+
+// class Loggedin {
+//   int? id;
+//   String? userId;
+//   String? ip;
+
+//   String? lastIn;
+//   String? createdAt;
+//   String? updatedAt;
+
+//   Loggedin(
+//       {this.id,
+//       this.userId,
+//       this.ip,
+
+//       this.lastIn,
+//       this.createdAt,
+//       this.updatedAt});
+
+//   Loggedin.fromJson(Map<String, dynamic> json) {
+//     id = json['id'];
+//     userId = json['user_id'];
+//     ip = json['ip'];
+
+//     lastIn = json['last_in'];
+//     createdAt = json['created_at'];
+//     updatedAt = json['updated_at'];
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['id'] = this.id;
+//     data['user_id'] = this.userId;
+//     data['ip'] = this.ip;
+//     data['last_in'] = this.lastIn;
+//     data['created_at'] = this.createdAt;
+//     data['updated_at'] = this.updatedAt;
+//     return data;
+//   }
+// }

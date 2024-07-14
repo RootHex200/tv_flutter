@@ -8,6 +8,7 @@ class ProfileController extends GetxController{
   var loading=false.obs;
   Rx<User> user=User().obs;
   
+  Rx<ProfileModel> profile=ProfileModel().obs;
 
   userLogout()async{
 
@@ -20,6 +21,7 @@ class ProfileController extends GetxController{
     loading.value=true;
 
     ProfileModel res=await ProfileRepo.getUserProfileInfo();
+    profile.value=res;
     user.value=res.user!;
     loading.value=false;
     update();

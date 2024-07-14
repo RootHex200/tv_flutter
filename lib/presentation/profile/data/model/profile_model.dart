@@ -36,7 +36,7 @@ class User {
   String? email;
   String? image;
   String? code;
-  String? subscriptionId;
+  // String? subscriptionId;
   String? isPremium;
   String? isSuspended;
 
@@ -50,7 +50,7 @@ class User {
       this.email,
       this.image,
       this.code,
-      this.subscriptionId,
+      // this.subscriptionId,
       this.isPremium,
       this.isSuspended,
       this.createdAt,
@@ -62,8 +62,8 @@ class User {
     name = json['name'];
     email = json['email'];
     image = json['image'];
-    code = json['code'];
-    subscriptionId = json['subscription_id'];
+    // code = json['code']==null;
+    // subscriptionId = json['subscription_id'];
     isPremium = json['isPremium'];
     isSuspended = json['isSuspended'];
     createdAt = json['created_at'];
@@ -80,7 +80,7 @@ class User {
     data['email'] = this.email;
     data['image'] = this.image;
     data['code'] = this.code;
-    data['subscription_id'] = this.subscriptionId;
+    // data['subscription_id'] = this.subscriptionId;
     data['isPremium'] = this.isPremium;
     data['isSuspended'] = this.isSuspended;
     data['created_at'] = this.createdAt;

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
@@ -17,7 +19,7 @@ class ProfilePage extends StatelessWidget {
     ProfileController profileController=Get.put(ProfileController());
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.balckColor,
         appBar: AppBar(
           title: const Text(
             "Profile",
@@ -27,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                 color: AppColors.primaryWhiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppBlueColor,
+          backgroundColor: AppColors.primaryAppRedColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
@@ -48,32 +50,43 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0, right: 24, top: 15),
                 child: Column(
                   children: [
-                    // Center(
-                    //   child: Stack(
-                    //     children: [
-                    //       const CircleAvatar(
-                    //         radius: 50,
-                    //         backgroundColor: AppColors.primaryAppBlueColor,
-                    //       ),
-                    //       Positioned(
-                    //         bottom: 0,
-                    //         right: 0,
-                    //         child: InkWell(
-                    //           onTap: () {},
-                    //           child: const CircleAvatar(
-                    //             radius: 15,
-                    //             backgroundColor: Color(0xFF9610FF),
-                    //             child: Icon(
-                    //               Icons.edit,
-                    //               size: 15,
-                    //               color: Colors.white,
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
+                    Center(
+                      child: Stack(
+                        children: [
+
+                      profileController.user.value.image!=null?
+                           CircleAvatar(
+                                radius: 50,
+                              backgroundImage: NetworkImage("$BASE_URL/${profileController.user.value.image!.toString()}"),
+                              )
+                        :profileController.imageLoading.value==true ||profileController.imagedata.value.isEmpty?  const CircleAvatar(
+                            radius: 50,
+                            backgroundColor: AppColors.primaryAppRedColor,
+                          ): CircleAvatar(
+                            radius: 50,
+                           backgroundImage: MemoryImage(base64Decode(profileController.imagedata.value.toString())),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: InkWell(
+                              onTap: ()async {
+                              await  profileController.pickImage(profileController.user.value.email!,profileController.user.value.name!);
+                              },
+                              child: const CircleAvatar(
+                                radius: 15,
+                                backgroundColor: Color(0xFF9610FF),
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     const VerticalSpace(height: 20),
                     buildCustomContainer(
                       text: "Account Username",
@@ -112,7 +125,7 @@ class ProfilePage extends StatelessWidget {
                     buildCustomContainer(
                       text: "Subscription",
                       trailing:  Text(
-                        "${profileController.user.value.subscription!.duration}/${profileController.user.value.subscription!.type}",
+                       profileController.user.value.subscription==null?"Not Yet": "${profileController.user.value.subscription!.duration}/${profileController.user.value.subscription!.type}",
                         style: const TextStyle(
                           fontSize: 16.0,
                           color: AppColors.primaryWhiteColor,
@@ -124,15 +137,11 @@ class ProfilePage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ManageAccount()));
                       },
                       child: buildCustomContainer(
                         text: "Linked Device",
                         trailing:  Text(
-                          profileController.profile.value.linkedDevice.toString(),
+                          profileController.profile.value.linkedDevice??"No subscription",
                           style: TextStyle(
                             fontSize: 16.0,
                             color: AppColors.primaryWhiteColor,
@@ -153,6 +162,7 @@ class ProfilePage extends StatelessWidget {
                             title:Text(res.toString()),
                           );
                          });
+                        Get.deleteAll();
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const Homepage()));
                         },
                         child: buildCustomContainer(
@@ -176,7 +186,7 @@ class ProfilePage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
-                          color: AppColors.primaryAppBlueColor,
+                          color: AppColors.primaryAppRedColor,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Center(
@@ -209,7 +219,7 @@ class ProfilePage extends StatelessWidget {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-          color: Colors.black54,
+          color: AppColors.balckColor54,
           borderRadius: BorderRadius.circular(9.0),
           boxShadow: [
             BoxShadow(

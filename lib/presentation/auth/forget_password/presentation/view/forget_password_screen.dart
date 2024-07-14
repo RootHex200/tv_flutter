@@ -42,8 +42,9 @@ return Scaffold(
                 iconData: Icons.email_outlined, labelText: "Email Address"),
                 const VerticalSpace(height: 20.0),
                 
-               CustomButton(txt: 'Continue',ontap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const OtpverifyScreen()));
+               CustomButton(txt: 'Continue',ontap: ()async{
+                final code=await forgetController.getCode(forgetController.emailController.text.trim());
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> OtpverifyScreen(code: code["code"],email: code["email"],)));
                },),
                const VerticalSpace(height: 40.0),
                 

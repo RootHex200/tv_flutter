@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/auth/login/presentation/views/login_screen.dart';
 import 'package:live_tv/presentation/home/presentation/controller/category_controller.dart';
+import 'package:live_tv/presentation/home/presentation/controller/channel_data_controller.dart';
 import 'package:live_tv/presentation/home/presentation/view/components/tab_view_data.dart';
 import 'package:live_tv/presentation/profile/presentation/view/profile.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
@@ -16,6 +17,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryController=Get.put(CategoryController());
+    ChannelDataController channelDataController=Get.put(ChannelDataController());
     return SafeArea(
       child: DefaultTabController(
         length: 4,
@@ -27,7 +29,7 @@ class Homepage extends StatelessWidget {
                   GestureDetector(
                         onTap: ()async{
                           final SharedPreferences prefss =await prefs;
-                          if(prefss.getString("token")!.isEmpty ||prefss.getString("token")==null){
+                          if(prefss.getString("token")==null){
                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
                           }else{
                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>ProfilePage()), (route) => false);

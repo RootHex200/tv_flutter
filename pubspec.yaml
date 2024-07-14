@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.2.3
   device_info_plus: ^8.2.2
   webview_flutter: ^3.0.4
+  # flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
@@ -95,3 +96,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+# flutter_native_splash:
+#   color: "#0c72fe"

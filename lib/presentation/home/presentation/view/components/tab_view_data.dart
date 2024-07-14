@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/details/presentation/view/details_page.dart';
-import 'package:live_tv/presentation/home/data/model/channel_model.dart';
 import 'package:live_tv/presentation/home/presentation/controller/channel_data_controller.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
@@ -15,8 +14,10 @@ class TabViewData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChannelDataController channelDataController=Get.put(ChannelDataController(categoryid: categoryId));
-
+    ChannelDataController channelDataController=Get.put(ChannelDataController());
+    Future.delayed(const Duration(milliseconds: 10),(){
+      channelDataController.getChannelData(categoryId);
+    });
     return Obx(
       ()=> channelDataController.loadingdata.value==true?const Center(child: CircularProgressIndicator()): GridView.builder(
         padding: const EdgeInsets.only(top: 10),
@@ -34,7 +35,7 @@ class TabViewData extends StatelessWidget {
         itemBuilder: (context,index){
           return GestureDetector(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const DetailsPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailsPage(categoryId: categoryId,videoUrl: "",)));
             },
             child: Container(
              

@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
+import 'package:live_tv/presentation/auth/reset_password/presentation/views/reset_password_screen.dart';
 import 'package:live_tv/utils/common/widgets/back_button/back_button.dart';
-import 'package:live_tv/utils/common/widgets/button/custom_buttom.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/style/text_style.dart';
 
 class OtpverifyScreen extends StatelessWidget {
-  const OtpverifyScreen({super.key});
+  final String code;
+  final String email;
+  const OtpverifyScreen({super.key,required this.code,required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class OtpverifyScreen extends StatelessWidget {
               ),
               const VerticalSpace(height: 22.0),
               OtpTextField(
+                
                 fieldHeight: 80.0,
                 fieldWidth: 60.0,
                 filled: true,
@@ -53,15 +55,21 @@ class OtpverifyScreen extends StatelessWidget {
                 onCodeChanged: (String code) {
                   //handle validation or checks here
                 },
+                onSubmit: (String optcode){
+                  if(optcode==code){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ResetPasswordScreen(code: code,email: email,)));
+                  }
+                },
                 //runs when every textfield is filled // end onSubmit
               ),
-              const VerticalSpace(height: 20.0),
-              CustomButton(
-                txt: 'Continue',
-                ontap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const Homepage()));
-                },
-              ),
+              // const VerticalSpace(height: 20.0),
+              // CustomButton(
+              //   txt: 'Continue',
+              //   ontap: () {
+                  
+              //     Navigator.push(context, MaterialPageRoute(builder: (context)=>const Homepage()));
+              //   },
+              // ),
               const VerticalSpace(height: 40.0),
             ],
           ),

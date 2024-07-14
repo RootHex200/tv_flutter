@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:live_tv/presentation/auth/forget_password/data/repositories/forget_password_repo.dart';
 
 class ForgetPasswordController extends GetxController{
-
+  var forgetformkey=GlobalKey<FormState>();
   late TextEditingController emailController;
 
   @override
@@ -22,6 +22,7 @@ class ForgetPasswordController extends GetxController{
 
 
   getCode(String email)async{
+    print("code is here");
    return await ForgetRepo.forgetPassword(email);
   }
 

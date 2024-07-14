@@ -10,6 +10,7 @@ import 'package:live_tv/utils/common/widgets/button/custom_buttom.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/common/widgets/text_field/custom_text_field.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
+import 'package:live_tv/utils/value/constrant/value.dart';
 import 'package:live_tv/utils/value/style/text_style.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -28,7 +29,9 @@ return Scaffold(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const VerticalSpace(height: 70),
-                CustomBackButton(onPressed: (){}),
+                CustomBackButton(onPressed: (){
+                  Navigator.pop(context);
+                }),
                 const VerticalSpace(height: 50.0),
               const Text(
                 'Email Address',
@@ -37,14 +40,31 @@ return Scaffold(
                 const VerticalSpace(height: 8.0),
                 const Text("Enter your email address to reset Password",style: fontsize17WithGrayColorTextStyle,),
                 const VerticalSpace(height: 22.0),
-                CustomTextFieldWidget(
-                controller: forgetController.emailController,
-                iconData: Icons.email_outlined, labelText: "Email Address"),
+                Form(
+                  key: forgetController.forgetformkey,
+                  child: CustomTextFieldWidget(
+                                    validator: (value) {
+                  if (value != null && value.isNotEmpty) {
+                    if (validateEmail(value) == false) {
+                      return 'Invalid Email Address';
+                    }
+                  } else {
+                    return 'Please enter your email address';
+                  }
+                  return null;
+                                },
+                  controller: forgetController.emailController,
+                  iconData: Icons.email_outlined, labelText: "Email Address"),
+                ),
                 const VerticalSpace(height: 20.0),
                 
                CustomButton(txt: 'Continue',ontap: ()async{
+
+                if(forgetController.forgetformkey.currentState!.validate()){
                 final code=await forgetController.getCode(forgetController.emailController.text.trim());
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> OtpverifyScreen(code: code["code"],email: code["email"],)));
+                print(code["code"]);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> OtpverifyScreen(code: code["code"].toString(),email: code["email"].toString(),)));
+                }
                },),
                const VerticalSpace(height: 40.0),
                 

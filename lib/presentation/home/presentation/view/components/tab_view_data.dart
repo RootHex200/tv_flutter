@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:live_tv/presentation/details/presentation/view/details_page.dart';
 import 'package:live_tv/presentation/home/presentation/controller/channel_data_controller.dart';
+import 'package:live_tv/utils/ads/add_controller.dart';
 import 'package:live_tv/utils/common/widgets/space/space.dart';
 import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/constrant/value.dart';
@@ -15,6 +16,7 @@ class TabViewData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ChannelDataController channelDataController=Get.put(ChannelDataController());
+    final adscontroller=Get.put(AdsController());
     Future.delayed(const Duration(milliseconds: 10),(){
       channelDataController.getChannelData(categoryId);
     });
@@ -35,6 +37,7 @@ class TabViewData extends StatelessWidget {
         itemBuilder: (context,index){
           return GestureDetector(
             onTap: (){
+              adscontroller.showRewardedAd();
               Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailsPage(categoryId: categoryId,videoUrl: "",)));
             },
             child: Container(

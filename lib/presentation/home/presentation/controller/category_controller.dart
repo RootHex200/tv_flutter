@@ -2,11 +2,14 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:live_tv/presentation/home/data/model/category_model.dart';
 import 'package:live_tv/presentation/home/data/repositories/home_repo.dart';
 import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
+import 'package:live_tv/utils/ads/ads_helper.dart';
 
 class CategoryController extends GetxController with GetTickerProviderStateMixin{
 
@@ -16,6 +19,7 @@ class CategoryController extends GetxController with GetTickerProviderStateMixin
   var selectTabTextColor=0.obs;
 
   var mainTabbarselected=0.obs;
+
   @override
   void onInit() async{
     var data=await getTabData();
@@ -33,4 +37,9 @@ class CategoryController extends GetxController with GetTickerProviderStateMixin
     loading.value=false;
     return tabData.length;
   }
+
+  
+
+
+
 }

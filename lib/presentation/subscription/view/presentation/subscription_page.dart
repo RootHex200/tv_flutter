@@ -10,17 +10,9 @@ import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/constrant/value.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SubscriptionScreen extends StatefulWidget {
+class SubscriptionScreen extends StatelessWidget {
   const SubscriptionScreen({super.key});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _SubscriptionScreenState createState() => _SubscriptionScreenState();
-}
-
-class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  bool selectMonth = false;
-  bool selectYear = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +26,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           children: [
             const CircleAvatar(
               radius: 80,
-              backgroundImage: AssetImage("assets/images/download.png"),
+              backgroundImage: AssetImage("assets/images/app_logo.png"),
             ),
             const VerticalSpace(height: 20),
             const Text(
@@ -51,14 +43,16 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             Obx(
               ()=> subscriptionController.loading.value==true?const Center(child: CircularProgressIndicator(),): 
               Column(
-                children:List.generate(subscriptionController.subscription.length, (index) => GestureDetector(
+                children:List.generate(subscriptionController.subscription.length, (index) {
+                  subscriptionController.id.value=subscriptionController.subscription.first.id!;
+                  return GestureDetector(
                   onTap: (){
                     subscriptionController.buttonSelect.value=index;
                     subscriptionController.id.value=subscriptionController.subscription[index].id!;
                   },
                   child: Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(left: 20,right: 20),
+                      margin: const EdgeInsets.only(left: 20,right: 20,bottom: 10),
                       padding: const EdgeInsets.only(left: 20,right: 20),
                       decoration: BoxDecoration(
                         color:subscriptionController.buttonSelect.value==index?AppColors.primaryAppBlueColor: Colors.black54,
@@ -78,7 +72,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         ],
                       )
                     ),
-                )),
+                );
+                }),
               ),
             ),
             const VerticalSpace(height: 20),
@@ -87,7 +82,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ElevatedButton(
               onPressed: () async{
               final SharedPreferences prefss =await prefs;
-                          if(prefss.getString("token")!.isEmpty ||prefss.getString("token")==null){
+                          if(prefss.getString("token")==null){
                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
                           }else{
                            

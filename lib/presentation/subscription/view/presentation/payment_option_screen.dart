@@ -2,6 +2,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
+import 'package:live_tv/presentation/subscription/view/presentation/cancel_payment_screen.dart';
+import 'package:live_tv/presentation/subscription/view/presentation/success_payment_screen.dart';
+import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -23,8 +27,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         backgroundColor: Colors.blue,
         automaticallyImplyLeading: false, // Removes back button
         elevation: 20,
-        title: Text(
+        title: const Text(
           'Payment',
+          style: TextStyle(color: AppColors.primaryWhiteColor),
         ),
       ),
       body: Stack(
@@ -41,6 +46,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
               });
             },
             onPageFinished: (String url) {
+              if(url.contains("/api/paypal/return")){
+               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const SuccessScreen()), (route) => false);
+                return;
+              }
+              if(url.contains("/api/paypal/cancel")){
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const CancelScreen()), (route) => false);
+                return;
+              }
               setState(() {
                 _isLoading = false;
               });

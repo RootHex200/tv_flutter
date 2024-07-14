@@ -5,19 +5,19 @@ class ProfileModel {
   ProfileModel({this.user, this.loggedin});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     loggedin = json['loggedin'] != null
-        ? new Loggedin.fromJson(json['loggedin'])
+        ? Loggedin.fromJson(json['loggedin'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
-    if (this.loggedin != null) {
-      data['loggedin'] = this.loggedin!.toJson();
+    if (loggedin != null) {
+      data['loggedin'] = loggedin!.toJson();
     }
     return data;
   }
@@ -28,12 +28,12 @@ class User {
   String? name;
   String? email;
   String? image;
-  Null? emailVerifiedAt;
-  Null? code;
+  String? emailVerifiedAt;
+  String? code;
   String? subscriptionId;
   String? isPremium;
   String? isSuspended;
-  Null? lastSeen;
+  String? lastSeen;
   String? createdAt;
   String? updatedAt;
 
@@ -56,8 +56,8 @@ class User {
     name = json['name'];
     email = json['email'];
     image = json['image'];
-    emailVerifiedAt = json['email_verified_at'];
-    code = json['code'];
+    emailVerifiedAt = json['email_verified_at']??"";
+    code = json['code']==null?"":json["code"];
     subscriptionId = json['subscription_id'];
     isPremium = json['isPremium'];
     isSuspended = json['isSuspended'];
@@ -67,19 +67,19 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['image'] = this.image;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['code'] = this.code;
-    data['subscription_id'] = this.subscriptionId;
-    data['isPremium'] = this.isPremium;
-    data['isSuspended'] = this.isSuspended;
-    data['last_seen'] = this.lastSeen;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['image'] = image;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['code'] = code;
+    data['subscription_id'] = subscriptionId;
+    data['isPremium'] = isPremium;
+    data['isSuspended'] = isSuspended;
+    data['last_seen'] = lastSeen;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }
@@ -88,43 +88,44 @@ class Loggedin {
   int? id;
   String? userId;
   String? ip;
-  Null? device;
+  // void device;
   String? lastIn;
   String? createdAt;
   String? updatedAt;
-  Null? subscription;
+  // void subscription;
 
   Loggedin(
       {this.id,
       this.userId,
       this.ip,
-      this.device,
+      // this.device,
       this.lastIn,
       this.createdAt,
-      this.updatedAt,
-      this.subscription});
+      // this.updatedAt,
+      // this.subscription
+      });
 
   Loggedin.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     ip = json['ip'];
-    device = json['device'];
+    // device = json['device'];
     lastIn = json['last_in'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    subscription = json['subscription'];
+    // subscription = json['subscription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['ip'] = this.ip;
-    data['device'] = this.device;
-    data['last_in'] = this.lastIn;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['subscription'] = this.subscription;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['ip'] = ip;
+    // data['device'] = device;
+    data['last_in'] = lastIn;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    // data['subscription'] = subscription;
     return data;
   }
 }

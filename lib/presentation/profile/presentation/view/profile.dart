@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ProfileController profileController=Get.put(ProfileController());
+    ProfileController profileController=Get.put(ProfileController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -42,149 +42,157 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
-        body: GetBuilder<ProfileController>(
-          builder:(profilecontroller)=> Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 15),
-            child: Column(
-              children: [
-                Center(
-                  child: Stack(
-                    children: [
-                      const CircleAvatar(
-                        radius: 50,
-                        backgroundColor: AppColors.primaryAppBlueColor,
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: InkWell(
-                          onTap: () {},
-                          child: const CircleAvatar(
-                            radius: 15,
-                            backgroundColor: Color(0xFF9610FF),
-                            child: Icon(
-                              Icons.edit,
-                              size: 15,
-                              color: Colors.white,
+        body:  Obx(
+          ()=>profileController.loading.value==true?const Center(child: CircularProgressIndicator(),): Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24, top: 15),
+              child: Column(
+                children: [
+                  Center(
+                    child: Stack(
+                      children: [
+                        const CircleAvatar(
+                          radius: 50,
+                          backgroundColor: AppColors.primaryAppBlueColor,
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: InkWell(
+                            onTap: () {},
+                            child: const CircleAvatar(
+                              radius: 15,
+                              backgroundColor: Color(0xFF9610FF),
+                              child: Icon(
+                                Icons.edit,
+                                size: 15,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                const VerticalSpace(height: 20),
-                buildCustomContainer(
-                  text: "Account Username",
-                  trailing:  Text(
-                    profilecontroller.user.name.toString(),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: AppColors.primaryWhiteColor,
+                      ],
                     ),
                   ),
-                ),
-                const VerticalSpace(height: 8),
-                buildCustomContainer(
-                  text: "Account Email",
-                  trailing:  Text(
-                    profilecontroller.user.email.toString(),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: AppColors.primaryWhiteColor,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                buildCustomContainer(
-                  text: "Subscription",
-                  trailing:  Text(
-                    profilecontroller.user.subscriptionId.toString(),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: AppColors.primaryWhiteColor,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ManageAccount()));
-                  },
-                  child: buildCustomContainer(
-                    text: "Linked Device",
-                    trailing: const Text(
-                      '1/3',
-                      style: TextStyle(
+                  const VerticalSpace(height: 20),
+                  buildCustomContainer(
+                    text: "Account Username",
+                    trailing:  Text(
+                      profileController.user.value.name.toString(),
+                      style: const TextStyle(
                         fontSize: 16.0,
                         color: AppColors.primaryWhiteColor,
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                GestureDetector(
-                    onTap: () async{
-                      final SharedPreferences prefss =await prefs;
-                     prefss.setString("token", "");
-                     final res=await profilecontroller.userLogout();
-                     showDialog(context: context, builder: (context){
-                      return  AlertDialog(
-                        title:Text(res.toString()),
-                      );
-                     });
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const Homepage()));
+                  const VerticalSpace(height: 8),
+                  buildCustomContainer(
+                    text: "Account Email",
+                    trailing:  SizedBox(
+                
+                      width: 150,
+                      child: Text(
+                        profileController.user.value.email.toString(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                         
+                          color: AppColors.primaryWhiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  buildCustomContainer(
+                    text: "Subscription",
+                    trailing:  Text(
+                      profileController.user.value.subscriptionId.toString(),
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: AppColors.primaryWhiteColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ManageAccount()));
                     },
                     child: buildCustomContainer(
-                      text: "Log Out",
-                      trailing: const Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                const SizedBox(
-                  height: 100,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SubscriptionScreen()));
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryAppBlueColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Subscription",
+                      text: "Linked Device",
+                      trailing: const Text(
+                        '1/3',
                         style: TextStyle(
-                            color: AppColors.primaryWhiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19),
+                          fontSize: 16.0,
+                          color: AppColors.primaryWhiteColor,
+                        ),
                       ),
                     ),
                   ),
-                )
-              ],
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  GestureDetector(
+                      onTap: () async{
+                        final SharedPreferences prefss =await prefs;
+                       prefss.setString("token", "");
+                       final res=await profileController.userLogout();
+                       showDialog(context: context, builder: (context){
+                        return  AlertDialog(
+                          title:Text(res.toString()),
+                        );
+                       });
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const Homepage()));
+                      },
+                      child: buildCustomContainer(
+                        text: "Log Out",
+                        trailing: const Icon(
+                          Icons.logout,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SubscriptionScreen()));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryAppBlueColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Subscription",
+                          style: TextStyle(
+                              color: AppColors.primaryWhiteColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
         ),
-      ),
-    );
+        ),
+      );
+    
   }
 
   //custom container

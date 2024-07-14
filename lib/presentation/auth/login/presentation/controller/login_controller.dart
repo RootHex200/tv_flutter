@@ -11,6 +11,8 @@ class LoginController extends GetxController{
   LoginController();
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  var showpassword=false.obs;
+  final loginformKey = GlobalKey<FormState>();
   @override
   void onInit() {
     emailController=TextEditingController();

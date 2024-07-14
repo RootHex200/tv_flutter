@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:live_tv/presentation/auth/login/presentation/views/login_screen.dart';
 import 'package:live_tv/presentation/auth/reset_password/presentation/controller/reset_password_binding.dart';
 import 'package:live_tv/presentation/auth/reset_password/presentation/controller/reset_password_controller.dart';
 import 'package:live_tv/utils/common/widgets/back_button/back_button.dart';
@@ -44,8 +45,20 @@ class ResetPasswordScreen extends StatelessWidget {
                 const VerticalSpace(height: 20.0),
                 
                CustomButton(txt: 'Continue',ontap: ()async{
+
+          
                String res= await resetController.resetPassword(code, email, resetController.typePasswordcontroller.text.toString());
-               showDialog(context: context, builder: (context)=>AlertDialog(title: Text(res.toString()),));
+               if(res.toString().toLowerCase()=="Change Passowrd Successfully".toString().toLowerCase()){
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(res.toString()),
+                ));
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
+               }else{
+                                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(res.toString()),
+                ));
+               }
+
                },),
                const VerticalSpace(height: 40.0),
             ],

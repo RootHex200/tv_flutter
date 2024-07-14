@@ -11,7 +11,9 @@ import 'package:live_tv/utils/value/colors/colors.dart';
 import 'package:live_tv/utils/value/style/text_style.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({super.key});
+  final String code;
+  final String email;
+  const ResetPasswordScreen({super.key,required this.code,required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +42,11 @@ class ResetPasswordScreen extends StatelessWidget {
                 suffixIcon: const Icon(Icons.visibility_off),
                 iconData: Icons.lock_outline, labelText: "Type Password"),
                 const VerticalSpace(height: 20.0),
-               CustomTextFieldWidget(
-                controller: resetController.retypePasswordcontroller,
-                suffixIcon: const Icon(Icons.visibility_off),
-                iconData: Icons.lock_outline, labelText: "Re-Type Password"),
-                const VerticalSpace(height: 20.0),
                 
-               CustomButton(txt: 'Continue',ontap: (){},),
+               CustomButton(txt: 'Continue',ontap: ()async{
+               String res= await resetController.resetPassword(code, email, resetController.typePasswordcontroller.text.toString());
+               showDialog(context: context, builder: (context)=>AlertDialog(title: Text(res.toString()),));
+               },),
                const VerticalSpace(height: 40.0),
             ],
           ),

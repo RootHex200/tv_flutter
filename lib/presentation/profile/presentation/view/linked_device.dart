@@ -22,7 +22,7 @@ class ManageAccount extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.arrow_back_ios,color: AppColors.primaryAppRedColor,),
+              child: const Icon(Icons.arrow_back_ios,color: AppColors.primaryAppBlacColor,),
             ),
           ),
         ),

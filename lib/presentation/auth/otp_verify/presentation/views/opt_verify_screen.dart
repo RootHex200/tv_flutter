@@ -44,10 +44,10 @@ class OtpverifyScreen extends StatelessWidget {
                 textStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),
                 fillColor: AppColors.primaryWhiteColor,
                 numberOfFields: 4,
-                enabledBorderColor: AppColors.primaryAppRedColor,
-                focusedBorderColor: AppColors.primaryAppRedColor,
-                disabledBorderColor: AppColors.primaryAppRedColor,
-                borderColor: AppColors.primaryAppRedColor,
+                enabledBorderColor: AppColors.primaryAppBlacColor,
+                focusedBorderColor: AppColors.primaryAppBlacColor,
+                disabledBorderColor: AppColors.primaryAppBlacColor,
+                borderColor: AppColors.primaryAppBlacColor,
                 //set to true to show as box or false to show as dash
                 showFieldAsBox: true,
                 

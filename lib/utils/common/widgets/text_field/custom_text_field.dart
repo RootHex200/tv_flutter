@@ -20,7 +20,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       controller: controller,
       keyboardType:textInputType,
       decoration: InputDecoration(
-        prefixIcon:  Icon(iconData, color: AppColors.primaryAppRedColor),
+        prefixIcon:  Icon(iconData, color: AppColors.primaryAppBlacColor),
         hintText: labelText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -32,11 +32,11 @@ class CustomTextFieldWidget extends StatelessWidget {
         
         enabledBorder: const OutlineInputBorder(
           
-            borderSide: BorderSide(color: AppColors.primaryAppRedColor, width: 0.0)),
+            borderSide: BorderSide(color: AppColors.primaryAppBlacColor, width: 0.0)),
         focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.primaryAppRedColor, width: 0.0)),
+            borderSide: BorderSide(color: AppColors.primaryAppBlacColor, width: 0.0)),
         errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.primaryAppRedColor, width: 0.0)),
+            borderSide: BorderSide(color: AppColors.primaryAppBlacColor, width: 0.0)),
       ),
     );
   }

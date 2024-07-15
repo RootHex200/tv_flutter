@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BioScope Box',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryAppRedColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryAppBlacColor),
         useMaterial3: true,
       ),
       home: const SplashScreen(),

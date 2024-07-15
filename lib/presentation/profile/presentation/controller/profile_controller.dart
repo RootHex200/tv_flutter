@@ -23,7 +23,7 @@ class ProfileController extends GetxController{
     return res;
   }
 
-  getProfileInfo()async{
+  Future getProfileInfo()async{
     print("here");
     loading.value=true;
 

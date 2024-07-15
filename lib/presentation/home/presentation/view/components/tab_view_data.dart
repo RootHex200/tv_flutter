@@ -41,7 +41,7 @@ class TabViewData extends StatelessWidget {
             onTap: (){
               int randomIndex = Random().nextInt(channelDataController.channeldata.length) + 0; // Generate random index from 1 to 5
                                if (randomIndex == index) {
-                                   adscontroller.showRewardedAd();
+                                  //  adscontroller.showRewardedAd();
                                }
             
               Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailsPage(categoryId: categoryId,videoUrl:channelDataController.channeldata[index].hdUrl!.isEmpty? channelDataController.channeldata[index].url!:channelDataController.channeldata[index].hdUrl!,)));
@@ -80,7 +80,7 @@ class TabViewData extends StatelessWidget {
                               content: Text(channelDataController.channeldata[index].description.toString()),
                             ));
                           },
-                          child: const Icon(Icons.info_rounded,color: AppColors.primaryAppRedColor,size: 25,))),
+                          child: const Icon(Icons.info_rounded,color: AppColors.primaryAppBlacColor,size: 25,))),
                         const SizedBox(height: 6,),
                     // channelDataController.channeldata[index].hdUrl!.isNotEmpty?
                     //  Center(
@@ -102,7 +102,7 @@ class TabViewData extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 7,vertical: 7),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: AppColors.primaryAppRedColor,
+                            color: AppColors.primaryAppBlacColor,
                           ),
                           child: Text(channelDataController.channeldata[index].name.toString(),maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(color:AppColors.whiteColor,fontWeight: FontWeight.bold,fontSize: 17))),
                        )  ,
@@ -112,7 +112,7 @@ class TabViewData extends StatelessWidget {
                         width:25,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.primaryAppRedColor
+                          color: AppColors.primaryAppBlacColor
                         ),
                         child: Center(child: Text((index+1).toString(),style: TextStyle(color: AppColors.whiteColor,fontWeight: FontWeight.bold,fontSize: 19),))), 
                   

@@ -23,10 +23,11 @@ class _DetailsPageState extends State<DetailsPage> {
   late AdsController adsController;
   @override
   void initState() {
+    print(widget.videoUrl.toString());
     print(widget.videoUrl);
     adsController=Get.put(AdsController());
      detailsController = Get.put(DetailsController(
-        url:widget.videoUrl));
+        url:widget.videoUrl.toString()));
     detailsController.getReleatedChannel(widget.categoryId);
     super.initState();
   }
@@ -42,22 +43,19 @@ class _DetailsPageState extends State<DetailsPage> {
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
-            //           leading: SizedBox(
-            //   child: Image.asset("assets/images/app_logo.png"),
-            // ),
           backgroundColor: AppColors.whiteColor,
           centerTitle: true,
           title: Image(
-            height: 100,
+            // height: 100,
             width: 200,
-            image: AssetImage("assets/images/logo.png")),
+            image: AssetImage("assets/images/app_logo.png")),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);
             },
             child: const Icon(
               Icons.arrow_back_ios,
-              color: AppColors.primaryAppRedColor,
+              color: AppColors.primaryAppBlacColor,
             ),
           ),
         ),
@@ -86,7 +84,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 width: 260,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                   color: AppColors.primaryAppRedColor,
+                   color: AppColors.primaryAppBlacColor,
                 ),
                 child: Center(
                   child: Text("Watch Live Channel Now",
@@ -112,7 +110,21 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                 ),
-            const VerticalSpace(height: 50),
+            const VerticalSpace(height: 20),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Other channels",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22)),
+              ),
+            ),
+            const VerticalSpace(height: 20),
             Obx(
               () => Expanded(
                 child: detailsController.loading.value == true
@@ -136,9 +148,14 @@ class _DetailsPageState extends State<DetailsPage> {
                           detailsController.betterPlayerController.value.dispose();
                           detailsController.betterPlayerController.value =
                               BetterPlayerController(
-                                  const BetterPlayerConfiguration(
+                                
+                                   BetterPlayerConfiguration(
                                     autoDispose: true,
-                                    autoPlay: true
+                                    autoPlay: true,
+                                    errorBuilder: (context, errorMessage) {
+                                      return Text("Channel Can't be played");
+                                    },
+                                    
                                   ),
                                   betterPlayerDataSource:
                                       BetterPlayerDataSource(
@@ -170,6 +187,14 @@ class _DetailsPageState extends State<DetailsPage> {
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColors.blackColor.withOpacity(0.3),
+                                        blurRadius: 5.1,
+                                        spreadRadius: 5.0,
+                                        offset: Offset(0,2)
+                                      )
+                                    ],
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(

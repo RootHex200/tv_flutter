@@ -66,19 +66,23 @@ class ProfileRepo{
 
 
  static getUserProfileInfo()async{
+  print("getuserprofie");
         try{
     final SharedPreferences prefss =await prefs;
     final token=prefss.getString("token");  
     print("profile info:$token");    
+
       final response=await dio.get("$BASE_URL/api/user/profile",options: Options(
         headers: {
           "Authorization":"Bearer $token"
         }
       ));
+    print(response.data);
     if(response.statusCode==200){
       return ProfileModel.fromJson(response.data);
     }
     }catch (e){
+      print(e);
       return ProfileModel();
     }
   }

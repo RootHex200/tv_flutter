@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:live_tv/presentation/home/presentation/view/home_page.dart';
 import 'package:live_tv/presentation/subscription/view/presentation/cancel_payment_screen.dart';
 import 'package:live_tv/presentation/subscription/view/presentation/success_payment_screen.dart';
@@ -32,7 +33,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 color: AppColors.primaryWhiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppRedColor,
+          backgroundColor: AppColors.primaryAppBlacColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
@@ -69,6 +70,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const CancelScreen()), (route) => false);
                 return;
               }
+              Get.deleteAll();
               setState(() {
                 _isLoading = false;
               });

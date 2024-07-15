@@ -14,12 +14,33 @@ import 'package:live_tv/utils/value/constrant/value.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+
+  late  ProfileController profileController;
+
+  @override
+  void initState() {
+     profileController=Get.put(ProfileController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<ProfileController>();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ProfileController profileController=Get.put(ProfileController());
+  
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
@@ -32,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                 color: AppColors.whiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppRedColor,
+          backgroundColor: AppColors.primaryAppBlacColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
@@ -64,7 +85,7 @@ class ProfilePage extends StatelessWidget {
                               )
                         :profileController.imageLoading.value==true ||profileController.imagedata.value.isEmpty?  const CircleAvatar(
                             radius: 50,
-                            backgroundColor: AppColors.primaryAppRedColor,
+                            backgroundColor: AppColors.primaryAppBlacColor,
                           ): CircleAvatar(
                             radius: 50,
                            backgroundImage: MemoryImage(base64Decode(profileController.imagedata.value.toString())),
@@ -78,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                               },
                               child: const CircleAvatar(
                                 radius: 15,
-                                backgroundColor: AppColors.balckColor,
+                                backgroundColor: AppColors.primaryAppBlacColor,
                                 child: Icon(
                                   Icons.edit,
                                   size: 15,
@@ -229,7 +250,7 @@ class ProfilePage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
-                          color: AppColors.balckColor,
+                          color: AppColors.primaryAppBlacColor,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Center(
@@ -262,7 +283,7 @@ class ProfilePage extends StatelessWidget {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-          color: AppColors.primaryAppRedColor,
+          color: AppColors.primaryAppBlacColor,
           borderRadius: BorderRadius.circular(9.0),
           boxShadow: [
             BoxShadow(

@@ -18,7 +18,7 @@ class PolicyPage extends StatelessWidget {
                 color: AppColors.whiteColor),
           ),
           centerTitle: true,
-          backgroundColor: AppColors.primaryAppRedColor,
+          backgroundColor: AppColors.primaryAppBlacColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: GestureDetector(
